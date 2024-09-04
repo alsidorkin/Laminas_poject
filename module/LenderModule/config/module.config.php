@@ -8,7 +8,11 @@ return [
             LenderSubmitApplicantApplyRequest::class => LenderModule\Factory\Request\LenderSubmitApplicantApplyRequestFactory::class,
             LenderApplicantApplySubmitProcess::class => LenderModule\Factory\Process\LenderApplicantApplySubmitProcessFactory::class,
             LenderApplicantApplySubmitStrategy::class => LenderModule\Factory\Strategy\LenderApplicantApplySubmitStrategyFactory::class,
+            EncryptionService::class => LenderModule\Factory\EncryptionServiceFactory::class,
         ],
+    ],
+    'encryption' => [
+        'public_key' => "-----BEGIN PUBLIC KEY-----\n1111111111111111111111111111111111111111111\n-----END PUBLIC KEY-----",
     ],
     'controllers' => [
         'factories' => [
