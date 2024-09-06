@@ -2,7 +2,7 @@
 
 namespace LenderModule\Process;
 
-use LenderModule\LenderApplicantApplySubmitProcessAbstract;
+use LenderModule\Process\LenderApplicantApplySubmitProcessAbstract;
 use LenderModule\Request\LenderSubmitApplicantApplyRequest;
 
 class LenderApplicantApplySubmitProcess extends LenderApplicantApplySubmitProcessAbstract

@@ -2,15 +2,19 @@
 
 namespace LenderModule\Process;
 
-use LenderModule\LenderPreparationDataApplicantApplyProcessAbstract;
+use LenderModule\Process\LenderPreparationDataApplicantApplyProcessAbstract;
+use LenderModule\Service\EncryptionService;
+use LenderModule\Model\ModelInterface;
 
 class LenderPreparationDataApplicantApplyProcess extends LenderPreparationDataApplicantApplyProcessAbstract
 {
     protected $lenderSettings;
+    protected $encryptionService;
 
-    public function __construct(ModelInterface $lenderSettings)
+    public function __construct(ModelInterface $lenderSettings, EncryptionService $encryptionService)
     {
         $this->lenderSettings = $lenderSettings;
+        $this->encryptionService = $encryptionService;
     }
 
     public function prepareData(array $applicantData): array
@@ -25,6 +29,10 @@ class LenderPreparationDataApplicantApplyProcess extends LenderPreparationDataAp
                 'customer_details' => $applicantData['customer_details'],
             ],
         ];
+
+        $preparedData['request_data'] = $this->encryptionService->encryptData(json_encode($preparedData['request_data']));
+        $preparedData['item_data'] = $this->encryptionService->encryptLargeData($preparedData['item_data'] ?? []);
+
 
         return $preparedData;
     }

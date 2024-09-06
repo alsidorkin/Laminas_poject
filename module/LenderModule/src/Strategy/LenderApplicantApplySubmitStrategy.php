@@ -2,7 +2,7 @@
 
 namespace LenderModule\Strategy;
 
-use LenderModule\LenderApplicantApplySubmitStrategyAbstract;
+use LenderModule\Strategy\LenderApplicantApplySubmitStrategyAbstract;
 use LenderModule\Process\LenderApplicantApplySubmitProcess;
 
 class LenderApplicantApplySubmitStrategy extends LenderApplicantApplySubmitStrategyAbstract
