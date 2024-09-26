@@ -1,19 +1,33 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LenderModuleTest\Service;
 
-use PHPUnit\Framework\TestCase;
 use LenderModule\Service\EncryptionService;
+use PHPUnit\Framework\TestCase;
+
+use function base64_decode;
+use function json_decode;
+use function openssl_pkey_export;
+use function openssl_pkey_get_details;
+use function openssl_pkey_new;
+use function openssl_private_decrypt;
+use function str_repeat;
+
+use const OPENSSL_KEYTYPE_RSA;
 
 class EncryptionServiceTest extends TestCase
 {
+     /** @var string|null*/
     private $publicKey;
+     /** @var string|null*/
     private $privateKey;
 
     protected function setUp(): void
     {
         $config = [
-            "digest_alg" => "sha256",
+            "digest_alg"       => "sha256",
             "private_key_bits" => 2048,
             "private_key_type" => OPENSSL_KEYTYPE_RSA,
         ];
@@ -22,9 +36,9 @@ class EncryptionServiceTest extends TestCase
         openssl_pkey_export($res, $privateKey);
 
         $keyDetails = openssl_pkey_get_details($res);
-        $publicKey = $keyDetails["key"];
+        $publicKey  = $keyDetails["key"];
 
-        $this->publicKey = $publicKey;
+        $this->publicKey  = $publicKey;
         $this->privateKey = $privateKey;
     }
 

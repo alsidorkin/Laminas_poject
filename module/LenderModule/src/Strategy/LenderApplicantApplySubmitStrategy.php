@@ -1,15 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LenderModule\Strategy;
 
-use LenderModule\Strategy\LenderApplicantApplySubmitStrategyAbstract;
 use LenderModule\Process\LenderApplicantApplySubmitProcess;
+use LenderModule\Strategy\LenderApplicantApplySubmitStrategyAbstract;
 
 class LenderApplicantApplySubmitStrategy extends LenderApplicantApplySubmitStrategyAbstract
 {
+     /** @var LenderApplicantApplySubmitProcess|null*/
     protected $submitProcess;
 
-    public function __construct( LenderApplicantApplySubmitProcess $submitProcess)
+    public function __construct(LenderApplicantApplySubmitProcess $submitProcess)
     {
         $this->submitProcess = $submitProcess;
     }
@@ -19,4 +22,3 @@ class LenderApplicantApplySubmitStrategy extends LenderApplicantApplySubmitStrat
         return $this->submitProcess->execute($applicantData);
     }
 }
-

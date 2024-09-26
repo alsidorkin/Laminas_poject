@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LenderModule\Process;
 
 use LenderModule\Process\LenderApplicantApplySubmitProcessAbstract;
@@ -7,7 +9,9 @@ use LenderModule\Request\LenderSubmitApplicantApplyRequest;
 
 class LenderApplicantApplySubmitProcess extends LenderApplicantApplySubmitProcessAbstract
 {
+     /** @var LenderPreparationDataApplicantApplyProcess|null*/
     protected $dataPreparationProcess;
+     /** @var LenderSubmitApplicantApplyRequest|null*/
     protected $submitRequest;
 
     public function __construct(
@@ -15,7 +19,7 @@ class LenderApplicantApplySubmitProcess extends LenderApplicantApplySubmitProces
         LenderSubmitApplicantApplyRequest $submitRequest
     ) {
         $this->dataPreparationProcess = $dataPreparationProcess;
-        $this->submitRequest = $submitRequest;
+        $this->submitRequest          = $submitRequest;
     }
 
     public function execute(array $applicantData): string

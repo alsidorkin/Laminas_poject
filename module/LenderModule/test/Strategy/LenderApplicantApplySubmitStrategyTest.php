@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LenderModuleTest\Strategy;
 
-use PHPUnit\Framework\TestCase;
-use LenderModule\Strategy\LenderApplicantApplySubmitStrategy;
 use LenderModule\Process\LenderApplicantApplySubmitProcess;
+use LenderModule\Strategy\LenderApplicantApplySubmitStrategy;
+use PHPUnit\Framework\TestCase;
 
 class LenderApplicantApplySubmitStrategyTest extends TestCase
 {

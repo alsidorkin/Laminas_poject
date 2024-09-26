@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LenderModuleTest\Request;
 
-use PHPUnit\Framework\TestCase;
-use LenderModule\Request\LenderSubmitApplicantApplyRequest;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
+use LenderModule\Request\LenderSubmitApplicantApplyRequest;
+use PHPUnit\Framework\TestCase;
 
 class LenderSubmitApplicantApplyRequestTest extends TestCase
 {
@@ -15,13 +17,13 @@ class LenderSubmitApplicantApplyRequestTest extends TestCase
 
         $preparedData = [
             'request_data' => 'encrypted_request_data',
-            'item_data' => ['encrypted_item_data'],
+            'item_data'    => ['encrypted_item_data'],
         ];
 
         $expectedParams = [
             'form_params' => [
-                'rid' => 'sandbox',
-                'data' => 'encrypted_request_data',
+                'rid'       => 'sandbox',
+                'data'      => 'encrypted_request_data',
                 'item_data' => ['encrypted_item_data'],
             ],
         ];

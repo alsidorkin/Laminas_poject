@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LenderModuleTest\Process;
 
-use PHPUnit\Framework\TestCase;
 use LenderModule\Process\LenderApplicantApplySubmitProcess;
 use LenderModule\Process\LenderPreparationDataApplicantApplyProcess;
 use LenderModule\Request\LenderSubmitApplicantApplyRequest;
+use PHPUnit\Framework\TestCase;
 
 class LenderApplicantApplySubmitProcessTest extends TestCase
 {

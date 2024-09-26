@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LenderModuleTest\Model;
 
-use PHPUnit\Framework\TestCase;
 use LenderModule\Model\LenderSettings;
+use PHPUnit\Framework\TestCase;
+use ReflectionClass;
 
 class LenderSettingsTest extends TestCase
 {
@@ -11,14 +14,14 @@ class LenderSettingsTest extends TestCase
     {
         $lenderSettings = new LenderSettings();
 
-        $reflection = new \ReflectionClass($lenderSettings);
+        $reflection = new ReflectionClass($lenderSettings);
 
         $properties = [
-            'username' => 'testuser',
-            'returnUrls' => ['success' => 'http://example.com/success'],
-            'requestType' => 'standard',
-            'testMode' => true,
-            'orderDetails' => ['order_id' => 12345],
+            'username'        => 'testuser',
+            'returnUrls'      => ['success' => 'http://example.com/success'],
+            'requestType'     => 'standard',
+            'testMode'        => true,
+            'orderDetails'    => ['order_id' => 12345],
             'customerDetails' => ['name' => 'John Doe'],
         ];
 

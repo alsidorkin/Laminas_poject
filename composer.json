@@ -18,7 +18,8 @@
         "laminas/laminas-skeleton-installer": "^1.3.0"
     },
     "require-dev": {
-        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+        "laminas/laminas-coding-standard": "^2.3",
         "laminas/laminas-test": "^4.9",
         "phpunit/phpunit": "^10.5",
         "psalm/plugin-phpunit": "^0.18.4",
@@ -37,8 +38,8 @@
     },
     "scripts": {
         "clear-config-cache": "php bin/clear-config-cache.php",
-        "cs-check": "vendor/bin/phpcs",
-        "cs-fix": "vendor/bin/phpcbf",
+        "cs-check": "vendor/bin/phpcs --standard=LaminasCodingStandard module/",
+        "cs-fix": "vendor/bin/phpcbf --standard=LaminasCodingStandard module/",
         "development-disable": "laminas-development-mode disable",
         "development-enable": "laminas-development-mode enable",
         "development-status": "laminas-development-mode status",
@@ -75,4 +76,5 @@
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
     }
+    
 }

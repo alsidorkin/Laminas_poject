@@ -1,23 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LenderModuleTest\Process;
 
-use PHPUnit\Framework\TestCase;
+use LenderModule\Model\ModelInterface;
 use LenderModule\Process\LenderPreparationDataApplicantApplyProcess;
 use LenderModule\Service\EncryptionService;
-use LenderModule\Model\ModelInterface;
+use PHPUnit\Framework\TestCase;
 
 class LenderPreparationDataApplicantApplyProcessTest extends TestCase
 {
+    /** @var ModelInterface|null*/
     protected $lenderSettingsMock;
+    /** @var EncryptionService|null*/
     protected $encryptionServiceMock;
+    /** @var LenderPreparationDataApplicantApplyProcess|null*/
     protected $process;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->lenderSettingsMock = $this->createMock(ModelInterface::class);
+        $this->lenderSettingsMock    = $this->createMock(ModelInterface::class);
         $this->encryptionServiceMock = $this->createMock(EncryptionService::class);
 
         $this->lenderSettingsMock->method('getUsername')->willReturn('testuser');
@@ -29,14 +34,17 @@ class LenderPreparationDataApplicantApplyProcessTest extends TestCase
         $this->encryptionServiceMock->method('encryptData')->willReturn('encrypted_request_data');
         $this->encryptionServiceMock->method('encryptLargeData')->willReturn(['encrypted_item_data']);
 
-        $this->process = new LenderPreparationDataApplicantApplyProcess($this->lenderSettingsMock, $this->encryptionServiceMock);
+        $this->process = new LenderPreparationDataApplicantApplyProcess(
+            $this->lenderSettingsMock,
+            $this->encryptionServiceMock
+        );
     }
 
     public function testPrepareData()
     {
         $applicantData = [
             'customer_details' => ['name' => 'John Doe'],
-            'item_data' => [['description' => 'Item 1']]
+            'item_data'        => [['description' => 'Item 1']],
         ];
 
         $result = $this->process->prepareData($applicantData);
@@ -46,7 +54,7 @@ class LenderPreparationDataApplicantApplyProcessTest extends TestCase
         $this->assertArrayHasKey('username', $result);
         $this->assertArrayHasKey('request_data', $result);
         $this->assertArrayHasKey('item_data', $result);
-        
+
         $this->assertEquals('testuser', $result['username']);
         $this->assertEquals('encrypted_request_data', $result['request_data']);
         $this->assertEquals(['encrypted_item_data'], $result['item_data']);
